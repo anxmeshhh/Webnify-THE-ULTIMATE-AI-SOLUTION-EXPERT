@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        
+        {% if not show %}
+            <form method="post" class="login-form">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        {% else %}
+            <h2>Contact Entries</h2>
+            {% if entries %}
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Company</th>
+                                <th>Service</th>
+                                <th>Budget</th>
+                                <th>Timeline</th>
+                                <th>Message</th>
+                                <th>Newsletter</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in entries %}
+                                <tr>
+                                    <td>{{ entry[0] }}</td>
+                                    <td>{{ entry[1] }}</td>
+                                    <td>{{ entry[2] }}</td>
+                                    <td>{{ entry[3] }}</td>
+                                    <td>{{ entry[4] }}</td>
+                                    <td>{{ entry[5] }}</td>
+                                    <td>{{ entry[6] }}</td>
+                                    <td>{{ entry[7] }}</td>
+                                    <td>{{ entry[8] }}</td>
+                                    <td>{{ entry[9] }}</td>
+                                    <td>{{ 'Yes' if entry[10] else 'No' }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p>No entries found.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
