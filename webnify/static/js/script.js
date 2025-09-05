@@ -416,11 +416,12 @@ function addMessage(text, isUser = false) {
     const message = document.createElement('div');
     message.className = `message ${isUser ? 'user-message' : 'agent-message'}`;
     const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
 
     if (!isUser) {
         message.innerHTML = `
             <div class="message-avatar">
-                <img src="/placeholder.svg?height=32&width=32" alt="Agent">
+                <img src="${agentAvatar}" alt="Agent">
             </div>
             <div class="message-content">
                 <p>${text}</p>
